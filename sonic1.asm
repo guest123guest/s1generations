@@ -2826,6 +2826,7 @@ Pal_SegaBG:	incbin	pallet\sega_bg.bin
 Pal_Title:	incbin	pallet\title.bin
 Pal_LevelSel:	incbin	pallet\levelsel.bin
 Pal_Sonic:	incbin	pallet\sonic.bin
+Pal_CDSonic:	incbin	pallet\sonic.bin
 Pal_GHZ:	incbin	pallet\ghz.bin
 Pal_LZ:		incbin	pallet\lz.bin
 Pal_LZWater:	incbin	pallet\lz_uw.bin	; LZ underwater pallets
@@ -2839,6 +2840,8 @@ Pal_SBZ3:	incbin	pallet\sbz_act3.bin	; SBZ act 3 pallets
 Pal_SBZ3Water:	incbin	pallet\sbz_a3uw.bin	; SBZ act 3 (underwater) pallets
 Pal_LZSonWater:	incbin	pallet\son_lzuw.bin	; Sonic (underwater in LZ) pallet
 Pal_SBZ3SonWat:	incbin	pallet\son_sbzu.bin	; Sonic (underwater in SBZ act 3) pallet
+Pal_LZCDSonWater:	incbin	pallet\son_lzuw.bin	; Sonic (underwater in LZ) pallet
+Pal_SBZ3CDSonWat:	incbin	pallet\son_sbzu.bin	; Sonic (underwater in SBZ act 3) pallet
 Pal_SpeResult:	incbin	pallet\ssresult.bin	; special stage results screen pallets
 Pal_SpeContinue:incbin	pallet\sscontin.bin	; special stage results screen continue pallet
 Pal_Ending:	incbin	pallet\ending.bin	; ending sequence pallets
@@ -3052,9 +3055,6 @@ Sega_WaitPallet:
 		bsr.w	DelayProgram
 		bsr.w	PalCycle_Sega
 		bne.s	Sega_WaitPallet
-
-		move.b	#$E1,d0
-		bsr.w	PlaySound_Special ; play "SEGA"	sound
 		move.b	#$14,($FFFFF62A).w
 		bsr.w	DelayProgram
 		move.w	#$1E,($FFFFF614).w
@@ -3126,8 +3126,6 @@ Title_ClrPallet:
 
 		moveq	#3,d0		; load Sonic's pallet
 		bsr.w	PalLoad1
-		move.b	#$8A,($FFFFD080).w ; load "SONIC TEAM PRESENTS"	object
-		jsr	ObjectsLoad
 		jsr	BuildSprites
 		bsr.w	Pal_FadeTo
 		move	#$2700,sr
@@ -25258,6 +25256,8 @@ loc_13B26:
 ; ===========================================================================
 SonicAniData:
 	include "_anim\Sonic.asm"
+CDSonicAniData:
+	include "_anim\CDSonic.asm"
 
 ; ---------------------------------------------------------------------------
 ; Sonic	pattern	loading	subroutine
@@ -37671,9 +37671,23 @@ SonicDynPLC:
 	include "_inc\Sonic dynamic pattern load cues.asm"
 
 ; ---------------------------------------------------------------------------
+; Sprite mappings - Sonic
+; ---------------------------------------------------------------------------
+Map_CDSonic:
+	include "_maps\CDSonic.asm"
+
+; ---------------------------------------------------------------------------
+; Uncompressed graphics	loading	array for Sonic
+; ---------------------------------------------------------------------------
+CDSonicDynPLC:
+	include "_inc\CDSonic dynamic pattern load cues.asm"
+
+; ---------------------------------------------------------------------------
 ; Uncompressed graphics	- Sonic
 ; ---------------------------------------------------------------------------
 Art_Sonic:	incbin	artunc\sonic.bin	; Sonic
+		even
+Art_CDSonic:	incbin	artunc\sonic.bin	; CD Sonic essentially uses the same sprites, doesn't he?
 		even
 ; ---------------------------------------------------------------------------
 ; Compressed graphics - various

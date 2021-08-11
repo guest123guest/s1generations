@@ -1,0 +1,437 @@
+CDSonicDPLC:
+CDSonicDPLC_0: 	dc.w CDSonicDPLC_B0-CDSonicDPLC
+CDSonicDPLC_2: 	dc.w CDSonicDPLC_B1-CDSonicDPLC
+CDSonicDPLC_4: 	dc.w CDSonicDPLC_BA-CDSonicDPLC
+CDSonicDPLC_6: 	dc.w CDSonicDPLC_C1-CDSonicDPLC
+CDSonicDPLC_8: 	dc.w CDSonicDPLC_C8-CDSonicDPLC
+CDSonicDPLC_A: 	dc.w CDSonicDPLC_CF-CDSonicDPLC
+CDSonicDPLC_C: 	dc.w CDSonicDPLC_D6-CDSonicDPLC
+CDSonicDPLC_E: 	dc.w CDSonicDPLC_DF-CDSonicDPLC
+CDSonicDPLC_10: 	dc.w CDSonicDPLC_E4-CDSonicDPLC
+CDSonicDPLC_12: 	dc.w CDSonicDPLC_E9-CDSonicDPLC
+CDSonicDPLC_14: 	dc.w CDSonicDPLC_F2-CDSonicDPLC
+CDSonicDPLC_16: 	dc.w CDSonicDPLC_F7-CDSonicDPLC
+CDSonicDPLC_18: 	dc.w CDSonicDPLC_FE-CDSonicDPLC
+CDSonicDPLC_1A: 	dc.w CDSonicDPLC_109-CDSonicDPLC
+CDSonicDPLC_1C: 	dc.w CDSonicDPLC_116-CDSonicDPLC
+CDSonicDPLC_1E: 	dc.w CDSonicDPLC_11F-CDSonicDPLC
+CDSonicDPLC_20: 	dc.w CDSonicDPLC_12A-CDSonicDPLC
+CDSonicDPLC_22: 	dc.w CDSonicDPLC_133-CDSonicDPLC
+CDSonicDPLC_24: 	dc.w CDSonicDPLC_13E-CDSonicDPLC
+CDSonicDPLC_26: 	dc.w CDSonicDPLC_147-CDSonicDPLC
+CDSonicDPLC_28: 	dc.w CDSonicDPLC_14C-CDSonicDPLC
+CDSonicDPLC_2A: 	dc.w CDSonicDPLC_151-CDSonicDPLC
+CDSonicDPLC_2C: 	dc.w CDSonicDPLC_15A-CDSonicDPLC
+CDSonicDPLC_2E: 	dc.w CDSonicDPLC_15F-CDSonicDPLC
+CDSonicDPLC_30: 	dc.w CDSonicDPLC_166-CDSonicDPLC
+CDSonicDPLC_32: 	dc.w CDSonicDPLC_173-CDSonicDPLC
+CDSonicDPLC_34: 	dc.w CDSonicDPLC_180-CDSonicDPLC
+CDSonicDPLC_36: 	dc.w CDSonicDPLC_189-CDSonicDPLC
+CDSonicDPLC_38: 	dc.w CDSonicDPLC_194-CDSonicDPLC
+CDSonicDPLC_3A: 	dc.w CDSonicDPLC_19D-CDSonicDPLC
+CDSonicDPLC_3C: 	dc.w CDSonicDPLC_1A8-CDSonicDPLC
+CDSonicDPLC_3E: 	dc.w CDSonicDPLC_1AD-CDSonicDPLC
+CDSonicDPLC_40: 	dc.w CDSonicDPLC_1B2-CDSonicDPLC
+CDSonicDPLC_42: 	dc.w CDSonicDPLC_1B7-CDSonicDPLC
+CDSonicDPLC_44: 	dc.w CDSonicDPLC_1BC-CDSonicDPLC
+CDSonicDPLC_46: 	dc.w CDSonicDPLC_1C5-CDSonicDPLC
+CDSonicDPLC_48: 	dc.w CDSonicDPLC_1CC-CDSonicDPLC
+CDSonicDPLC_4A: 	dc.w CDSonicDPLC_1D5-CDSonicDPLC
+CDSonicDPLC_4C: 	dc.w CDSonicDPLC_1DC-CDSonicDPLC
+CDSonicDPLC_4E: 	dc.w CDSonicDPLC_1E1-CDSonicDPLC
+CDSonicDPLC_50: 	dc.w CDSonicDPLC_1E6-CDSonicDPLC
+CDSonicDPLC_52: 	dc.w CDSonicDPLC_1EB-CDSonicDPLC
+CDSonicDPLC_54: 	dc.w CDSonicDPLC_1F0-CDSonicDPLC
+CDSonicDPLC_56: 	dc.w CDSonicDPLC_1F9-CDSonicDPLC
+CDSonicDPLC_58: 	dc.w CDSonicDPLC_1FE-CDSonicDPLC
+CDSonicDPLC_5A: 	dc.w CDSonicDPLC_207-CDSonicDPLC
+CDSonicDPLC_5C: 	dc.w CDSonicDPLC_20C-CDSonicDPLC
+CDSonicDPLC_5E: 	dc.w CDSonicDPLC_20F-CDSonicDPLC
+CDSonicDPLC_60: 	dc.w CDSonicDPLC_212-CDSonicDPLC
+CDSonicDPLC_62: 	dc.w CDSonicDPLC_215-CDSonicDPLC
+CDSonicDPLC_64: 	dc.w CDSonicDPLC_218-CDSonicDPLC
+CDSonicDPLC_66: 	dc.w CDSonicDPLC_21B-CDSonicDPLC
+CDSonicDPLC_68: 	dc.w CDSonicDPLC_220-CDSonicDPLC
+CDSonicDPLC_6A: 	dc.w CDSonicDPLC_223-CDSonicDPLC
+CDSonicDPLC_6C: 	dc.w CDSonicDPLC_228-CDSonicDPLC
+CDSonicDPLC_6E: 	dc.w CDSonicDPLC_22B-CDSonicDPLC
+CDSonicDPLC_70: 	dc.w CDSonicDPLC_230-CDSonicDPLC
+CDSonicDPLC_72: 	dc.w CDSonicDPLC_239-CDSonicDPLC
+CDSonicDPLC_74: 	dc.w CDSonicDPLC_242-CDSonicDPLC
+CDSonicDPLC_76: 	dc.w CDSonicDPLC_249-CDSonicDPLC
+CDSonicDPLC_78: 	dc.w CDSonicDPLC_250-CDSonicDPLC
+CDSonicDPLC_7A: 	dc.w CDSonicDPLC_257-CDSonicDPLC
+CDSonicDPLC_7C: 	dc.w CDSonicDPLC_25A-CDSonicDPLC
+CDSonicDPLC_7E: 	dc.w CDSonicDPLC_261-CDSonicDPLC
+CDSonicDPLC_80: 	dc.w CDSonicDPLC_268-CDSonicDPLC
+CDSonicDPLC_82: 	dc.w CDSonicDPLC_26F-CDSonicDPLC
+CDSonicDPLC_84: 	dc.w CDSonicDPLC_278-CDSonicDPLC
+CDSonicDPLC_86: 	dc.w CDSonicDPLC_281-CDSonicDPLC
+CDSonicDPLC_88: 	dc.w CDSonicDPLC_28C-CDSonicDPLC
+CDSonicDPLC_8A: 	dc.w CDSonicDPLC_297-CDSonicDPLC
+CDSonicDPLC_8C: 	dc.w CDSonicDPLC_29C-CDSonicDPLC
+CDSonicDPLC_8E: 	dc.w CDSonicDPLC_2A3-CDSonicDPLC
+CDSonicDPLC_90: 	dc.w CDSonicDPLC_2A8-CDSonicDPLC
+CDSonicDPLC_92: 	dc.w CDSonicDPLC_2AF-CDSonicDPLC
+CDSonicDPLC_94: 	dc.w CDSonicDPLC_2B4-CDSonicDPLC
+CDSonicDPLC_96: 	dc.w CDSonicDPLC_2BB-CDSonicDPLC
+CDSonicDPLC_98: 	dc.w CDSonicDPLC_2C2-CDSonicDPLC
+CDSonicDPLC_9A: 	dc.w CDSonicDPLC_2CD-CDSonicDPLC
+CDSonicDPLC_9C: 	dc.w CDSonicDPLC_2D8-CDSonicDPLC
+CDSonicDPLC_9E: 	dc.w CDSonicDPLC_2DD-CDSonicDPLC
+CDSonicDPLC_A0: 	dc.w CDSonicDPLC_2E4-CDSonicDPLC
+CDSonicDPLC_A2: 	dc.w CDSonicDPLC_2E7-CDSonicDPLC
+CDSonicDPLC_A4: 	dc.w CDSonicDPLC_2EA-CDSonicDPLC
+CDSonicDPLC_A6: 	dc.w CDSonicDPLC_2ED-CDSonicDPLC
+CDSonicDPLC_A8: 	dc.w CDSonicDPLC_2F4-CDSonicDPLC
+CDSonicDPLC_AA: 	dc.w CDSonicDPLC_2FB-CDSonicDPLC
+CDSonicDPLC_AC: 	dc.w CDSonicDPLC_302-CDSonicDPLC
+CDSonicDPLC_AE: 	dc.w CDSonicDPLC_309-CDSonicDPLC
+CDSonicDPLC_B0: 	dc.b $0
+CDSonicDPLC_B1: 	dc.b $4
+	dc.b $20, $0
+	dc.b $70, $3
+	dc.b $20, $B
+	dc.b $20, $E
+CDSonicDPLC_BA: 	dc.b $3
+	dc.b $50, $11
+	dc.b $50, $17
+	dc.b $20, $1D
+CDSonicDPLC_C1: 	dc.b $3
+	dc.b $50, $20
+	dc.b $50, $17
+	dc.b $20, $1D
+CDSonicDPLC_C8: 	dc.b $3
+	dc.b $50, $20
+	dc.b $50, $17
+	dc.b $20, $26
+CDSonicDPLC_CF: 	dc.b $3
+	dc.b $80, $29
+	dc.b $20, $B
+	dc.b $20, $E
+CDSonicDPLC_D6: 	dc.b $4
+	dc.b $70, $32
+	dc.b $50, $3A
+	dc.b $50, $40
+	dc.b $10, $46
+CDSonicDPLC_DF: 	dc.b $2
+	dc.b $70, $32
+	dc.b $B0, $48
+CDSonicDPLC_E4: 	dc.b $2
+	dc.b $50, $54
+	dc.b $80, $5A
+CDSonicDPLC_E9: 	dc.b $4
+	dc.b $50, $54
+	dc.b $50, $63
+	dc.b $50, $69
+	dc.b $10, $6F
+CDSonicDPLC_F2: 	dc.b $2
+	dc.b $50, $54
+	dc.b $B0, $71
+CDSonicDPLC_F7: 	dc.b $3
+	dc.b $70, $32
+	dc.b $30, $7D
+	dc.b $50, $81
+CDSonicDPLC_FE: 	dc.b $5
+	dc.b $50, $87
+	dc.b $50, $8D
+	dc.b $20, $93
+	dc.b $50, $96
+	dc.b $0, $9C
+CDSonicDPLC_109: 	dc.b $6
+	dc.b $50, $87
+	dc.b $10, $9D
+	dc.b $30, $9F
+	dc.b $50, $A3
+	dc.b $30, $A9
+	dc.b $0, $AD
+CDSonicDPLC_116: 	dc.b $4
+	dc.b $50, $AE
+	dc.b $10, $B4
+	dc.b $70, $B6
+	dc.b $20, $BE
+CDSonicDPLC_11F: 	dc.b $5
+	dc.b $50, $C1
+	dc.b $30, $C7
+	dc.b $70, $CB
+	dc.b $20, $D3
+	dc.b $10, $D6
+CDSonicDPLC_12A: 	dc.b $4
+	dc.b $50, $C1
+	dc.b $10, $D8
+	dc.b $70, $DA
+	dc.b $20, $E2
+CDSonicDPLC_133: 	dc.b $5
+	dc.b $50, $87
+	dc.b $10, $9D
+	dc.b $0, $93
+	dc.b $70, $E5
+	dc.b $20, $ED
+CDSonicDPLC_13E: 	dc.b $4
+	dc.b $70, $F0
+	dc.b $50, $F8
+	dc.b $10, $FE
+	dc.b $51, $0
+CDSonicDPLC_147: 	dc.b $2
+	dc.b $70, $F0
+	dc.b $B1, $6
+CDSonicDPLC_14C: 	dc.b $2
+	dc.b $51, $12
+	dc.b $81, $18
+CDSonicDPLC_151: 	dc.b $4
+	dc.b $51, $12
+	dc.b $51, $21
+	dc.b $11, $27
+	dc.b $51, $29
+CDSonicDPLC_15A: 	dc.b $2
+	dc.b $51, $12
+	dc.b $B1, $2F
+CDSonicDPLC_15F: 	dc.b $3
+	dc.b $70, $F0
+	dc.b $1, $6
+	dc.b $81, $3B
+CDSonicDPLC_166: 	dc.b $6
+	dc.b $51, $44
+	dc.b $11, $4A
+	dc.b $11, $4C
+	dc.b $81, $4E
+	dc.b $1, $57
+	dc.b $1, $58
+CDSonicDPLC_173: 	dc.b $6
+	dc.b $51, $44
+	dc.b $21, $59
+	dc.b $11, $5C
+	dc.b $11, $5E
+	dc.b $81, $60
+	dc.b $1, $57
+CDSonicDPLC_180: 	dc.b $4
+	dc.b $51, $69
+	dc.b $11, $6F
+	dc.b $81, $71
+	dc.b $11, $7A
+CDSonicDPLC_189: 	dc.b $5
+	dc.b $51, $7C
+	dc.b $21, $82
+	dc.b $11, $85
+	dc.b $71, $87
+	dc.b $21, $8F
+CDSonicDPLC_194: 	dc.b $4
+	dc.b $51, $7C
+	dc.b $11, $92
+	dc.b $81, $94
+	dc.b $11, $9D
+CDSonicDPLC_19D: 	dc.b $5
+	dc.b $51, $44
+	dc.b $81, $9F
+	dc.b $11, $5E
+	dc.b $11, $A8
+	dc.b $1, $57
+CDSonicDPLC_1A8: 	dc.b $2
+	dc.b $51, $AA
+	dc.b $B1, $B0
+CDSonicDPLC_1AD: 	dc.b $2
+	dc.b $50, $54
+	dc.b $B1, $BC
+CDSonicDPLC_1B2: 	dc.b $2
+	dc.b $51, $AA
+	dc.b $B1, $C8
+CDSonicDPLC_1B7: 	dc.b $2
+	dc.b $50, $54
+	dc.b $B1, $D4
+CDSonicDPLC_1BC: 	dc.b $4
+	dc.b $51, $E0
+	dc.b $11, $E6
+	dc.b $B1, $E8
+	dc.b $1, $F4
+CDSonicDPLC_1C5: 	dc.b $3
+	dc.b $51, $F5
+	dc.b $11, $FB
+	dc.b $B1, $FD
+CDSonicDPLC_1CC: 	dc.b $4
+	dc.b $51, $E0
+	dc.b $12, $9
+	dc.b $B2, $B
+	dc.b $1, $F4
+CDSonicDPLC_1D5: 	dc.b $3
+	dc.b $51, $F5
+	dc.b $11, $FB
+	dc.b $B2, $17
+CDSonicDPLC_1DC: 	dc.b $2
+	dc.b $52, $23
+	dc.b $B2, $29
+CDSonicDPLC_1E1: 	dc.b $2
+	dc.b $51, $12
+	dc.b $B2, $35
+CDSonicDPLC_1E6: 	dc.b $2
+	dc.b $52, $23
+	dc.b $B2, $41
+CDSonicDPLC_1EB: 	dc.b $2
+	dc.b $51, $12
+	dc.b $B2, $4D
+CDSonicDPLC_1F0: 	dc.b $4
+	dc.b $52, $59
+	dc.b $12, $5F
+	dc.b $B2, $61
+	dc.b $2, $6D
+CDSonicDPLC_1F9: 	dc.b $2
+	dc.b $72, $6E
+	dc.b $B2, $76
+CDSonicDPLC_1FE: 	dc.b $4
+	dc.b $52, $59
+	dc.b $12, $82
+	dc.b $B2, $84
+	dc.b $2, $6D
+CDSonicDPLC_207: 	dc.b $2
+	dc.b $72, $6E
+	dc.b $B2, $90
+CDSonicDPLC_20C: 	dc.b $1
+	dc.b $F2, $9C
+CDSonicDPLC_20F: 	dc.b $1
+	dc.b $F2, $AC
+CDSonicDPLC_212: 	dc.b $1
+	dc.b $F2, $BC
+CDSonicDPLC_215: 	dc.b $1
+	dc.b $F2, $CC
+CDSonicDPLC_218: 	dc.b $1
+	dc.b $F2, $DC
+CDSonicDPLC_21B: 	dc.b $2
+	dc.b $B2, $EC
+	dc.b $22, $F8
+CDSonicDPLC_220: 	dc.b $1
+	dc.b $F2, $FB
+CDSonicDPLC_223: 	dc.b $2
+	dc.b $B3, $B
+	dc.b $23, $17
+CDSonicDPLC_228: 	dc.b $1
+	dc.b $F3, $1A
+CDSonicDPLC_22B: 	dc.b $2
+	dc.b $53, $2A
+	dc.b $B3, $30
+CDSonicDPLC_230: 	dc.b $4
+	dc.b $53, $3C
+	dc.b $73, $42
+	dc.b $13, $4A
+	dc.b $3, $4C
+CDSonicDPLC_239: 	dc.b $4
+	dc.b $13, $4D
+	dc.b $73, $4F
+	dc.b $23, $57
+	dc.b $3, $5A
+CDSonicDPLC_242: 	dc.b $3
+	dc.b $23, $5B
+	dc.b $23, $5E
+	dc.b $F3, $61
+CDSonicDPLC_249: 	dc.b $3
+	dc.b $B3, $71
+	dc.b $73, $7D
+	dc.b $0, $71
+CDSonicDPLC_250: 	dc.b $3
+	dc.b $73, $85
+	dc.b $33, $8D
+	dc.b $23, $91
+CDSonicDPLC_257: 	dc.b $1
+	dc.b $83, $94
+CDSonicDPLC_25A: 	dc.b $3
+	dc.b $73, $9D
+	dc.b $3, $A5
+	dc.b $33, $A6
+CDSonicDPLC_261: 	dc.b $3
+	dc.b $73, $AA
+	dc.b $33, $B2
+	dc.b $23, $B6
+CDSonicDPLC_268: 	dc.b $3
+	dc.b $B3, $B9
+	dc.b $13, $C5
+	dc.b $3, $C7
+CDSonicDPLC_26F: 	dc.b $4
+	dc.b $B3, $C8
+	dc.b $33, $D4
+	dc.b $3, $D8
+	dc.b $3, $D9
+CDSonicDPLC_278: 	dc.b $4
+	dc.b $B3, $DA
+	dc.b $33, $E6
+	dc.b $3, $EA
+	dc.b $3, $EB
+CDSonicDPLC_281: 	dc.b $5
+	dc.b $83, $EC
+	dc.b $13, $F5
+	dc.b $53, $F7
+	dc.b $13, $FD
+	dc.b $3, $FF
+CDSonicDPLC_28C: 	dc.b $5
+	dc.b $84, $0
+	dc.b $14, $9
+	dc.b $53, $F7
+	dc.b $13, $FD
+	dc.b $3, $FF
+CDSonicDPLC_297: 	dc.b $2
+	dc.b $84, $B
+	dc.b $74, $14
+CDSonicDPLC_29C: 	dc.b $3
+	dc.b $84, $1C
+	dc.b $24, $25
+	dc.b $14, $28
+CDSonicDPLC_2A3: 	dc.b $2
+	dc.b $84, $2A
+	dc.b $74, $33
+CDSonicDPLC_2A8: 	dc.b $3
+	dc.b $84, $1C
+	dc.b $24, $3B
+	dc.b $14, $3E
+CDSonicDPLC_2AF: 	dc.b $2
+	dc.b $54, $40
+	dc.b $B4, $46
+CDSonicDPLC_2B4: 	dc.b $3
+	dc.b $84, $52
+	dc.b $34, $5B
+	dc.b $4, $5F
+CDSonicDPLC_2BB: 	dc.b $3
+	dc.b $74, $60
+	dc.b $14, $68
+	dc.b $B4, $6A
+CDSonicDPLC_2C2: 	dc.b $5
+	dc.b $74, $76
+	dc.b $14, $7E
+	dc.b $54, $80
+	dc.b $34, $86
+	dc.b $4, $8A
+CDSonicDPLC_2CD: 	dc.b $5
+	dc.b $74, $8B
+	dc.b $14, $7E
+	dc.b $54, $93
+	dc.b $34, $86
+	dc.b $4, $8A
+CDSonicDPLC_2D8: 	dc.b $2
+	dc.b $24, $99
+	dc.b $F4, $9C
+CDSonicDPLC_2DD: 	dc.b $3
+	dc.b $24, $AC
+	dc.b $B4, $AF
+	dc.b $24, $BB
+CDSonicDPLC_2E4: 	dc.b $1
+	dc.b $B4, $BE
+CDSonicDPLC_2E7: 	dc.b $1
+	dc.b $54, $CA
+CDSonicDPLC_2EA: 	dc.b $1
+	dc.b $14, $D0
+CDSonicDPLC_2ED: 	dc.b $3
+	dc.b $73, $85
+	dc.b $33, $8D
+	dc.b $23, $91
+CDSonicDPLC_2F4: 	dc.b $3
+	dc.b $73, $9D
+	dc.b $3, $A5
+	dc.b $33, $A6
+CDSonicDPLC_2FB: 	dc.b $3
+	dc.b $B4, $D2
+	dc.b $14, $DE
+	dc.b $34, $E0
+CDSonicDPLC_302: 	dc.b $3
+	dc.b $54, $E4
+	dc.b $B4, $EA
+	dc.b $10, $6D
+CDSonicDPLC_309: 	dc.b $2
+	dc.b $F4, $F6
+	dc.b $25, $6
+	even

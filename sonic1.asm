@@ -23805,6 +23805,7 @@ loc_12E0E:
 ; ---------------------------------------------------------------------------
 
 Obj01_MdNormal:				; XREF: Obj01_Modes
+		bsr.w	Sonic_Spindash
 		bsr.w	Sonic_Jump
 		bsr.w	Sonic_SlopeResist
 		bsr.w	Sonic_Move
@@ -24559,6 +24560,58 @@ loc_134C4:
 locret_134D2:
 		rts	
 ; End of function Sonic_JumpHeight
+
+Sonic_Spindash:				; CODE XREF: ROM:Obj01_MdNormalp
+        cmpi.b  #$04, ($FFFFFFF9).w ; are we snorc
+		bne.b	locret_10394 	; if not, become snorc
+		tst.b	$39(a0)
+		bne.s	loc_10396
+		cmpi.b	#8,$1C(a0)
+		bne.s	locret_10394
+		move.b	($FFFFF603).w,d0
+		andi.b	#$70,d0	; 'p'
+		beq.w	locret_10394
+		move.b	#3,$1C(a0)
+		move.w	#$BE,d0	; '�'
+		jsr	(PlaySound_Special).l
+		addq.l	#4,sp
+		move.b	#1,$39(a0)
+
+locret_10394:				; CODE XREF: Sonic_Spindash+Cj
+					; Sonic_Spindash+16j
+		rts
+; ===========================================================================
+
+loc_10396:				; CODE XREF: Sonic_Spindash+4j
+		move.b	($FFFFF602).w,d0
+		btst	#1,d0
+		bne.s	loc_103DC
+		move.b	#$E,$16(a0)
+		move.b	#7,$17(a0)
+		move.b	#2,$1C(a0)
+		addq.w	#5,$C(a0)
+		move.b	#0,$39(a0)
+		move.w	#$2000,($FFFFEED0).w
+		move.w	#$800,$14(a0)
+		btst	#0,$22(a0)
+		beq.s	loc_103D4
+		neg.w	$14(a0)
+
+loc_103D4:				; CODE XREF: Sonic_Spindash+6Cj
+		bset	#2,$22(a0)
+		rts
+; ===========================================================================
+
+loc_103DC:				; CODE XREF: Sonic_Spindash+3Cj
+		move.b	($FFFFF603).w,d0
+		andi.b	#$70,d0	; 'p'
+		beq.w	loc_103EA
+		nop
+
+loc_103EA:				; CODE XREF: Sonic_Spindash+82j
+		addq.l	#4,sp
+		rts
+; End of function Sonic_Spindash
 
 ; ---------------------------------------------------------------------------
 ; Subroutine to	slow Sonic walking up a	slope

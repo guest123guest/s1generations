@@ -11,6 +11,7 @@
 ; This file should be compiled with "as	-M"
 
 ; ===========================================================================
+Current_Character   equ $FFFFFFF9
 align macro
 	cnop 0,\1
 	endm
@@ -2813,6 +2814,46 @@ loc_2160:
 ; End of function PalLoad4_Water
 
 ; ===========================================================================
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; Subroutine to load correct player pallets
+; ---------------------------------------------------------------------------
+CharPalList:        dc.l Pal_Sonic, Pal_CDSonic
+CharPalListLZ:      dc.l Pal_LZSonWater, Pal_LZCDSonWater
+CharPalListSBZ3:    dc.l Pal_SBZ3SonWat, Pal_SBZ3CDSonWat
+ 
+LoadPlayerPalettes:
+        moveq   #0,d1
+        move.b  Current_Character.w,d1      ; get character ID
+        move.l  CharPalList(pc,d1.w),a1     ; get normal palette to a1
+ 
+        moveq   #7,d0               ; 16 palette entries
+        bsr.s   Loc_Pal             ; load palettes to RAM
+        cmpi.b  #1,$FFFFFE10.w          ; is LZ?
+        bne.s   LPP_rts             ; if not, branch
+ 
+        move.l  CharPalListLZ(pc,d1.w),a1   ; get underwater palette to a1
+        cmpi.b  #3,$FFFFFE11.w          ; is act number 3?
+        bne.s   LPP_UWPal           ; if not, branch
+                move.l  CharPalListSBZ3(pc,d1.w),a1 ; get SBZ3 underwater palette to a1
+ 
+LPP_UWPal:
+        moveq   #7,d0               ; 16 palette entries
+        lea (a3),a2             ; put water palette to a2
+        bsr.s   Loc_Pal             ; load to RAM
+ 
+LPP_rts:
+        rts                 ; return
+ 
+; ===========================================================================
+; ---------------------------------------------------------------------------
+; copy d0 + 1 longwords from a1 to a2
+; ---------------------------------------------------------------------------
+ 
+loc_Pal:
+        move.l  (a1)+,(a2)+     ; process next 2 palette entries
+        dbf d0,loc_Pal      ; keep looping until d0 is 0
+        rts             ; return
 ; ---------------------------------------------------------------------------
 ; Pallet pointers
 ; ---------------------------------------------------------------------------
@@ -3753,22 +3794,15 @@ Level_ClrVars3:
 		move.b	#1,($FFFFF64C).w ; enable water
 
 Level_LoadPal:
-		move.w	#$1E,($FFFFFE14).w
-		move	#$2300,sr
-		moveq	#3,d0
-		bsr.w	PalLoad2	; load Sonic's pallet line
-		cmpi.b	#1,($FFFFFE10).w ; is level LZ?
-		bne.s	Level_GetBgm	; if not, branch
-		moveq	#$F,d0		; pallet number	$0F (LZ)
-		cmpi.b	#3,($FFFFFE11).w ; is act number 3?
-		bne.s	Level_WaterPal	; if not, branch
-		moveq	#$10,d0		; pallet number	$10 (SBZ3)
-
-Level_WaterPal:
-		bsr.w	PalLoad3_Water	; load underwater pallet (see d0)
-		tst.b	($FFFFFE30).w
-		beq.s	Level_GetBgm
-		move.b	($FFFFFE53).w,($FFFFF64E).w
+		lea $FFFFFB00,a2        ; normal palette
+        lea $FFFFFA80,a3        ; underwater palette
+        bsr LoadPlayerPalettes  ; load palette for current character
+ 
+        cmpi.b  #1,$FFFFFE10.w      ; is level LZ?
+        bne.s   Level_GetBgm        ; if not, branch
+        tst.b   $FFFFFE30.w     ; has lamppost been hit?
+        beq.s   Level_GetBgm        ; if not, branch
+        move.b  $FFFFFE53.w,$FFFFF64E.w ; copy water direction to lamppost RAM
 
 Level_GetBgm:
 		tst.w	($FFFFFFF0).w
@@ -16565,8 +16599,9 @@ loc_D700:
 		btst	#5,d4
 		bne.s	loc_D71C
 		move.b	$1A(a0),d1
-		add.b	d1,d1
+		add.w	d1,d1					; MJ: changed from byte to word (we want more than 7F sprites)
 		adda.w	(a1,d1.w),a1
+		moveq	#$00,d1					; MJ: clear d1 (because of our byte to word change)
 		move.b	(a1)+,d1
 		subq.b	#1,d1
 		bmi.s	loc_D720
@@ -23526,6 +23561,7 @@ Map_obj65:
 ; ---------------------------------------------------------------------------
 ; Object 01 - Sonic
 ; ---------------------------------------------------------------------------
+Player_MapLoc:      dc.l Map_Sonic, Map_CDSonic
 
 Obj01:					; XREF: Obj_Index
 		tst.w	($FFFFFE08).w	; is debug mode	being used?
@@ -23550,7 +23586,12 @@ Obj01_Main:				; XREF: Obj01_Index
 		addq.b	#2,$24(a0)
 		move.b	#$13,$16(a0)
 		move.b	#9,$17(a0)
-		move.l	#Map_Sonic,4(a0)
+		moveq   #0,d0           ; quickly clear d0
+        move.b  Current_Character.w,d0  ; get character ID
+ 
+        move.l  #Player_MapLoc,a1   ; get players mapping location array
+        add.l   d0,a1           ; get correct mapping for player
+        move.l  (a1),4(a0)      ; put it to Sonic's mappings
 		move.w	#$780,2(a0)
 		move.b	#2,$18(a0)
 		move.b	#$18,$19(a0)
@@ -25084,9 +25125,13 @@ locret_139C2:
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
+Player_AniDat:     dc.l SonicAniData, CDSonicAniData
+                   even
 
 Sonic_Animate:				; XREF: Obj01_Control; et al
-		lea	(SonicAniData).l,a1
+		moveq   #0,d0           ; quickly clear d0
+        move.b  Current_Character.w,d0  ; get character ID
+        movea.l Player_AniDat(pc,d0.w),a1   ; put players animation data to a1
 		moveq	#0,d0
 		move.b	$1C(a0),d0
 		cmp.b	$1D(a0),d0	; is animation set to restart?
@@ -25112,7 +25157,8 @@ SAnim_Do2:
 		moveq	#0,d1
 		move.b	$1B(a0),d1	; load current frame number
 		move.b	1(a1,d1.w),d0	; read sprite number from script
-		bmi.s	SAnim_End_FF	; if animation is complete, branch
+		cmp.b	#$FD,d0					; MJ: is it a flag from FD to FF?
+		bhs	SAnim_End_FF				; MJ: if so, branch to flag routines
 
 SAnim_Next:
 		move.b	d0,$1A(a0)	; load sprite number
@@ -25179,10 +25225,13 @@ loc_13A78:
 		neg.w	d2
 
 loc_13A9C:
-		lea	(SonAni_Run).l,a1 ; use	running	animation
-		cmpi.w	#$600,d2	; is Sonic at running speed?
-		bcc.s	loc_13AB4	; if yes, branch
-		lea	(SonAni_Walk).l,a1 ; use walking animation
+		moveq   #0,d4           ; quickly clear d0
+        move.b  Current_Character.w,d4  ; get character ID
+        movea.l PAni_Run(pc,d4.w),a1    ; put players running animation to a1
+ 
+        cmpi.w  #$600,d2        ; is Sonic at running speed?
+        bcc.s   loc_13AB4       ; if yes, branch
+        movea.l PAni_Walk(pc,d4.w),a1   ; put players walking animation to a1
 		move.b	d0,d1
 		lsr.b	#1,d1
 		add.b	d1,d0
@@ -25202,6 +25251,12 @@ loc_13AC2:
 		add.b	d3,$1A(a0)	; modify frame number
 		rts	
 ; ===========================================================================
+PAni_Run:   dc.l SonAni_Run,    SonCDAni_Run
+PAni_Walk:  dc.l SonAni_Walk,   SonCDAni_Walk
+PAni_Roll2: dc.l SonAni_Roll2,  SonCDAni_Roll2
+PAni_Roll:  dc.l SonAni_Roll,   SonCDAni_Roll
+PAni_Push:  dc.l SonAni_Push,   SonCDAni_Push
+
 
 SAnim_RollJump:				; XREF: SAnim_WalkRun
 		addq.b	#1,d0		; is animation rolling/jumping?
@@ -25211,10 +25266,13 @@ SAnim_RollJump:				; XREF: SAnim_WalkRun
 		neg.w	d2
 
 loc_13ADE:
-		lea	(SonAni_Roll2).l,a1 ; use fast animation
-		cmpi.w	#$600,d2	; is Sonic moving fast?
-		bcc.s	loc_13AF0	; if yes, branch
-		lea	(SonAni_Roll).l,a1 ; use slower	animation
+		moveq   #0,d4           ; quickly clear d0
+        move.b  Current_Character.w,d4  ; get character ID
+        movea.l PAni_Roll2(pc,d4.w),a1  ; put players fast rolling animation to a1
+ 
+        cmpi.w  #$600,d2        ; is Sonic moving fast?
+        bcc.s   loc_13AF0       ; if yes, branch
+        movea.l PAni_Roll(pc,d4.w),a1   ; put players slow rolling animation to a1
 
 loc_13AF0:
 		neg.w	d2
@@ -25245,7 +25303,9 @@ loc_13B1E:
 loc_13B26:
 		lsr.w	#6,d2
 		move.b	d2,$1E(a0)	; modify frame duration
-		lea	(SonAni_Push).l,a1
+		moveq   #0,d4           ; quickly clear d0
+        move.b  Current_Character.w,d4  ; get character ID
+        movea.l PAni_Push(pc,d4.w),a1   ; put players fast rolling animation to a1
 		move.b	$22(a0),d1
 		andi.b	#1,d1
 		andi.b	#$FC,1(a0)
@@ -25265,44 +25325,61 @@ CDSonicAniData:
 
 ; ||||||||||||||| S U B	R O U T	I N E |||||||||||||||||||||||||||||||||||||||
 
+Player_DPLCLoc:     dc.l SonicDynPLC, CDSonicDynPLC
+Player_ArtLoc:      dc.l Art_Sonic, Art_CDSonic
+even
 
-LoadSonicDynPLC:			; XREF: Obj01_Control; et al
-		moveq #0,d0
-        move.b $1A(a0),d0 ; load frame number
-        cmp.b ($FFFFF766).w,d0
-        beq.s locret_13C96
-        move.b d0,($FFFFF766).w
-        lea (SonicDynPLC).l,a2
-        add.w d0,d0
-        adda.w (a2,d0.w),a2
-        moveq #0,d5
-        move.b (a2)+,d5
-        subq.w #1,d5
-        bmi.s locret_13C96
-        move.w #$F000,d4
-        move.l #Art_Sonic,d6
-
-SPLC_ReadEntry:
-        moveq #0,d1
-        move.b (a2)+,d1
-        lsl.w #8,d1
-        move.b (a2)+,d1
-        move.w d1,d3
-        lsr.w #8,d3
-        andi.w #$F0,d3
-        addi.w #$10,d3
-        andi.w #$FFF,d1
-        lsl.l #5,d1
-        add.l d6,d1
-        move.w d4,d2
-        add.w d3,d4
-        add.w d3,d4
-        jsr (QueueDMATransfer).l
-        dbf d5,SPLC_ReadEntry ; repeat for number of entries
-
-locret_13C96:
-        rts 
+LoadSonicDynPLC:
+        moveq   #0,d0               ; quickly clear d0
+        move.b  Current_Character.w,d0      ; get character ID
+ 
+        movea.l Player_DPLCLoc(pc,d0.w),a2  ; put players DPLC location to a2
+        move.l  Player_ArtLoc(pc,d0.w),d6   ; put players art location to a2
+        move.w  #$F000,d4           ; offset in VRAM to store art
+ 
+        moveq   #0,d0
+        move.b  $1A(a0),d0  ; load frame number
+        cmp.b   $FFFFF766.w,d0  ; check if equal with last queued frame
+        beq.s   DPLC_End    ; if is, don't load new DPLC
+        move.b  d0,$FFFFF766.w  ; remember queued frame
 ; End of function LoadSonicDynPLC
+ 
+; ---------------------------------------------------------------------------
+; Subroutine to queue any pattern load cue
+; Input: a2 - DPLC file, d4 - VRAM address, d6 - Art file, d0 - frame number
+; ---------------------------------------------------------------------------
+ 
+Load_DPLC:
+        add.w   d0,d0       ; multiply by 2
+        adda.w  (a2,d0.w),a2    ; get the right DPLC location
+        moveq   #0,d5       ; quckly clear d5
+        move.b  (a2)+,d5    ; then move the amount of requests to d5
+        subq.w  #1,d5       ; subtract 1
+        bmi.s   DPLC_End    ; if negative, branch away
+ 
+DPLC_ReadEntry:
+        moveq   #0,d1
+        move.b  (a2)+,d1    ; get first byte to d1, and increment pointer
+        lsl.w   #8,d1       ; shift 8 bits left
+        move.b  (a2)+,d1    ; move second byte to d1
+ 
+        move.w  d1,d3       ; move d1 to d3
+        lsr.w   #8,d3       ; shift 8 bits right
+        andi.w  #$F0,d3     ; leave only bits 7, 6, 5, and 4
+        addi.w  #$10,d3     ; add $10 to d3
+ 
+        andi.w  #$FFF,d1    ; filter out bits 15, 14, 13 and 12
+        lsl.l   #5,d1       ; shift 5 bits left
+        add.l   d6,d1       ; add the art address to d1
+        move.w  d4,d2       ; move VRAM location to d2
+        add.w   d3,d4       ; add d3 to VRAM address
+        add.w   d3,d4       ; add d3 to VRAM address
+ 
+        jsr QueueDMATransfer; Save it to the DMA queue
+        dbf d5,DPLC_ReadEntry; repeat for number of requests
+ 
+DPLC_End:
+        rts         ; return
 
 ; ===========================================================================
 ; ---------------------------------------------------------------------------
@@ -35462,7 +35539,12 @@ Obj09_Main:				; XREF: Obj09_Index
 		addq.b	#2,$24(a0)
 		move.b	#$E,$16(a0)
 		move.b	#7,$17(a0)
-		move.l	#Map_Sonic,4(a0)
+		moveq   #0,d0           ; quickly clear d0
+        move.b  Current_Character.w,d0  ; get character ID
+ 
+        move.l  #Player_MapLoc,a1   ; get players mapping location array
+        add.l   d0,a1           ; get correct mapping for player
+        move.l  (a1),4(a0)      ; put it to Sonic's mappings
 		move.w	#$780,2(a0)
 		move.b	#4,1(a0)
 		move.b	#0,$18(a0)
@@ -37687,6 +37769,7 @@ CDSonicDynPLC:
 ; ---------------------------------------------------------------------------
 Art_Sonic:	incbin	artunc\sonic.bin	; Sonic
 		even
+        align   $20000  ; align to next bank
 Art_CDSonic:	incbin	artunc\sonic.bin	; CD Sonic essentially uses the same sprites, doesn't he?
 		even
 ; ---------------------------------------------------------------------------

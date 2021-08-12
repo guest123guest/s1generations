@@ -3413,8 +3413,6 @@ LevelSelect:
 		bne.s	LevSel_Level_SS	; if not, go to	Level/SS subroutine
 		move.w	($FFFFFF84).w,d0
 		addi.w	#$80,d0
-		tst.b	($FFFFFFE3).w	; is Japanese Credits cheat on?
-		beq.s	LevSel_NoCheat	; if not, branch
 		cmpi.w	#$9F,d0		; is sound $9F being played?
 		beq.s	LevSel_Ending	; if yes, branch
 		cmpi.w	#$9E,d0		; is sound $9E being played?
@@ -3432,16 +3430,12 @@ LevSel_PlaySnd:
 ; ===========================================================================
 
 LevSel_Ending:				; XREF: LevelSelect
-		move.b	#$18,($FFFFF600).w ; set screen	mode to	$18 (Ending)
-		move.w	#$600,($FFFFFE10).w ; set level	to 0600	(Ending)
+		move.b	#$04, ($FFFFFFF9).w	; switch character from sos to snorc
 		rts	
 ; ===========================================================================
 
 LevSel_Credits:				; XREF: LevelSelect
-		move.b	#$1C,($FFFFF600).w ; set screen	mode to	$1C (Credits)
-		move.b	#$91,d0
-		bsr.w	PlaySound_Special ; play credits music
-		move.w	#0,($FFFFFFF4).w
+		move.b	#$00, ($FFFFFFF9).w	; switch character from sos to snorc
 		rts	
 ; ===========================================================================
 

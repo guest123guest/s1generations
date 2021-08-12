@@ -1494,15 +1494,17 @@ ClearPLC_Loop:
 
 RunPLC_RAM:				; XREF: Pal_FadeTo
 		tst.l	($FFFFF680).w
-		beq.s	locret_1640
+		beq.s	locret_1640_A
 		tst.w	($FFFFF6F8).w
-		bne.s	locret_1640
+		bne.s	locret_1640_A
 		movea.l	($FFFFF680).w,a0
 		lea	(loc_1502).l,a3
 		lea	($FFFFAA00).w,a1
 		move.w	(a0)+,d2
 		bpl.s	loc_160E
 		adda.w	#$A,a3
+        cmpi.b  #$00, ($FFFFFFF9).w ; are we snorc
+		bne.b	loc_160ECD 	; if not, become snorc
 
 loc_160E:
 		andi.w	#$7FFF,d2
@@ -1520,6 +1522,26 @@ loc_160E:
 		move.l	d0,($FFFFF6EC).w
 		move.l	d5,($FFFFF6F0).w
 		move.l	d6,($FFFFF6F4).w
+        rts
+locret_1640_A:
+		rts	
+
+loc_160ECD:
+		andi.w	#$7FFF,d2
+		bsr.w	NemDec4
+		move.b	(a0)+,d5
+		asl.w	#8,d5
+		move.b	(a0)+,d5
+		moveq	#$10,d6
+		moveq	#0,d0
+		move.l	a0,($FFFFF680).w
+		move.l	a3,($FFFFF6E0).w
+		move.l	d0,($FFFFF6E4).w
+		move.l	d0,($FFFFF6E8).w
+		move.l	d0,($FFFFF6EC).w
+		move.l	d5,($FFFFF6F0).w
+		move.l	d6,($FFFFF6F4).w
+        move.w	d2,($FFFFF6F8).w
 
 locret_1640:
 		rts	
@@ -16021,6 +16043,12 @@ Obj36_Upright:				; XREF: Obj36_Solid
 Obj36_Hurt:				; XREF: Obj36_SideWays; Obj36_Upright
 		tst.b	($FFFFFE2D).w	; is Sonic invincible?
 		bne.s	Obj36_Display	; if yes, branch
+        cmpi.b  #$00, ($FFFFFFF9).w ; are we snorc
+		BEQ.b	SpikeBug 	; if not, become snorc
+        tst.w	($FFFFD030).w	; +++ is Sonic invulnerable?
+		bne.s	Obj36_Display	; +++ if yes, branch
+
+SpikeBug:
 		move.l	a0,-(sp)
 		movea.l	a0,a2
 		lea	($FFFFD000).w,a0
@@ -23700,9 +23728,17 @@ Obj01_ChkInvin:
 		cmpi.w	#$103,($FFFFFE10).w ; check if level is	SBZ3
 		bne.s	Obj01_PlayMusic
 		moveq	#5,d0		; play SBZ music
+        cmpi.b	#$0,($FFFFFFF9).w	; is this act 1?
+		bne.s	Obj01_GetBgm2	; if not, branch
 
 Obj01_PlayMusic:
-		lea	(MusicList2).l,a1
+		lea	(MusicList).l,a1
+		move.b	(a1,d0.w),d0
+		jsr	(PlaySound).l	; play normal music
+        jmp Obj01_RmvInvin
+
+Obj01_GetBgm2:
+        lea	(MusicList2).l,a1
 		move.b	(a1,d0.w),d0
 		jsr	(PlaySound).l	; play normal music
 

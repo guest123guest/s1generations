@@ -1,37 +1,37 @@
 ; ---------------------------------------------------------------------------
 ; Animation script - Sonic
 ; ---------------------------------------------------------------------------
-		dc.w SonCDAni_Walk-SonicAniData
-		dc.w SonCDAni_Run-SonicAniData
-		dc.w SonCDAni_Roll-SonicAniData
-		dc.w SonCDAni_Roll2-SonicAniData
-		dc.w SonCDAni_Push-SonicAniData
-		dc.w SonCDAni_Wait-SonicAniData
-		dc.w SonCDAni_Balance-SonicAniData
-		dc.w SonCDAni_LookUp-SonicAniData
-		dc.w SonCDAni_Duck-SonicAniData
-		dc.w SonCDAni_Warp1-SonicAniData
-		dc.w SonCDAni_Warp2-SonicAniData
-		dc.w SonCDAni_Warp3-SonicAniData
-		dc.w SonCDAni_Warp4-SonicAniData
-		dc.w SonCDAni_Stop-SonicAniData
-		dc.w SonCDAni_Float1-SonicAniData
-		dc.w SonCDAni_Float2-SonicAniData
-		dc.w SonCDAni_Spring-SonicAniData
-		dc.w SonCDAni_LZHang-SonicAniData
-		dc.w SonCDAni_Leap1-SonicAniData
-		dc.w SonCDAni_Leap2-SonicAniData
-		dc.w SonCDAni_Surf-SonicAniData
-		dc.w SonCDAni_Bubble-SonicAniData
-		dc.w SonCDAni_Death1-SonicAniData
-		dc.w SonCDAni_Drown-SonicAniData
-		dc.w SonCDAni_Death2-SonicAniData
-		dc.w SonCDAni_Shrink-SonicAniData
-		dc.w SonCDAni_Hurt-SonicAniData
-		dc.w SonCDAni_LZSlide-SonicAniData
-		dc.w SonCDAni_Blank-SonicAniData
-		dc.w SonCDAni_Float3-SonicAniData
-		dc.w SonCDAni_Float4-SonicAniData
+		dc.w SonCDAni_Walk-CDSonicAniData
+		dc.w SonCDAni_Run-CDSonicAniData
+		dc.w SonCDAni_Roll-CDSonicAniData
+		dc.w SonCDAni_Roll2-CDSonicAniData
+		dc.w SonCDAni_Push-CDSonicAniData
+		dc.w SonCDAni_Wait-CDSonicAniData
+		dc.w SonCDAni_Balance-CDSonicAniData
+		dc.w SonCDAni_LookUp-CDSonicAniData
+		dc.w SonCDAni_Duck-CDSonicAniData
+		dc.w SonCDAni_Warp1-CDSonicAniData
+		dc.w SonCDAni_Warp2-CDSonicAniData
+		dc.w SonCDAni_Warp3-CDSonicAniData
+		dc.w SonCDAni_Warp4-CDSonicAniData
+		dc.w SonCDAni_Stop-CDSonicAniData
+		dc.w SonCDAni_Float1-CDSonicAniData
+		dc.w SonCDAni_Float2-CDSonicAniData
+		dc.w SonCDAni_Spring-CDSonicAniData
+		dc.w SonCDAni_LZHang-CDSonicAniData
+		dc.w SonCDAni_Leap1-CDSonicAniData
+		dc.w SonCDAni_Leap2-CDSonicAniData
+		dc.w SonCDAni_Surf-CDSonicAniData
+		dc.w SonCDAni_Bubble-CDSonicAniData
+		dc.w SonCDAni_Death1-CDSonicAniData
+		dc.w SonCDAni_Drown-CDSonicAniData
+		dc.w SonCDAni_Death2-CDSonicAniData
+		dc.w SonCDAni_Shrink-CDSonicAniData
+		dc.w SonCDAni_Hurt-CDSonicAniData
+		dc.w SonCDAni_LZSlide-CDSonicAniData
+		dc.w SonCDAni_Blank-CDSonicAniData
+		dc.w SonCDAni_Float3-CDSonicAniData
+		dc.w SonCDAni_Float4-CDSonicAniData
 SonCDAni_Walk:	dc.b $FF, 8, 9,	$A, $B,	6, 7, $FF
 SonCDAni_Run:	dc.b $FF, $1E, $1F, $20, $21, $FF, $FF,	$FF
 SonCDAni_Roll:	dc.b $FE, $2E, $2F, $30, $31, $32, $FF,	$FF

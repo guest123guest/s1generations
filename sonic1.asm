@@ -3327,6 +3327,22 @@ Title_CountC:
 loc_3230:
 		tst.w	($FFFFF614).w
 		beq.w	Demo
+Title_CheckForB:
+		cmpi.b	#$10, ($FFFFF605).w	; has B been pressed?
+		bne.s	StartCheck		; if not, branch
+Title_SecondCharacter:
+		cmpi.b  #$04, ($FFFFFFF9).w ; are we snorc
+		bne.b	Title_Switcheroo 	; if not, become snorc
+		move.b	#$00, ($FFFFFFF9).w	; switch character from snorc to sos
+		move.b	#$A3,d0			; put value of death sound into d0
+		bsr.w	PlaySound_Special	; jump to the subroutine that plays the sound currently in d0 ($A3, at the moment)
+		jmp 	StartCheck		; jump to StartCheck so i dont get back into Title_Switcheroo FUCK.
+Title_Switcheroo:	
+		move.b	#$04, ($FFFFFFF9).w	; switch character from sos to snorc
+		move.b	#$B5,d0			; put value of ring sound into d0
+		bsr.w	PlaySound_Special	; jump to the subroutine that plays the sound currently in d0 ($B5, at the moment)
+
+StartCheck:
 		andi.b	#$80,($FFFFF605).w ; check if Start is pressed
 		beq.w	loc_317C	; if not, branch
 

@@ -3372,7 +3372,7 @@ Title_ChkLevSel:
 		tst.b	($FFFFFFE0).w	; check	if level select	code is	on
 		beq.w	PlayLevel	; if not, play level
 		btst	#6,($FFFFF604).w ; check if A is pressed
-		beq.w	PlayLevel	; if not, play level
+		beq.w	AdvancedLevelSelect	; if not, play level
 		moveq	#2,d0
 		bsr.w	PalLoad2	; load level select pallet
 		lea	($FFFFCC00).w,a1
@@ -3492,6 +3492,10 @@ LevelSelectCode_US:
 		incbin	misc\ls_ucode.bin
 		even
 ; ===========================================================================
+
+AdvancedLevelSelect:
+        jmp Level_Select_Menu
+        rts
 
 ; ---------------------------------------------------------------------------
 ; Demo mode
@@ -40976,6 +40980,7 @@ SoundD0:	incbin	sound\soundD0.bin
 SegaPCM:	incbin	sound\segapcm.bin
 		even
 
+	include	"s2_menu.asm"	; Sonic 2 level select
 ; end of 'ROM'
 EndOfRom:
 
